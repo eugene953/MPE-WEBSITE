@@ -22,12 +22,9 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
                     {/* Logo and Newsletter */}
                     <div className="lg:col-span-1">
-                        <Link href="/" className="inline-block mb-4">
-                            <Image src="/logo.jpg" alt="MPE Digital Solutions" width={180} height={60} className="h-12 w-auto brightness-0 invert" />
-                        </Link>
                         <h3 className="text-lg font-semibold mb-3 font-[var(--font-heading)]">{t('footer.newsletter.title')}</h3>
                         <p className="text-gray-400 text-sm mb-4">{t('footer.newsletter.description')}</p>
-                        <form onSubmit={handleNewsletterSubmit} className="flex gap-2">
+                        <form onSubmit={handleNewsletterSubmit} className="flex gap-2 mt-15">
                             <input
                                 type="email"
                                 value={email}

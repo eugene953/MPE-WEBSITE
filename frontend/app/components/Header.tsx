@@ -23,7 +23,7 @@ export default function Header() {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center space-x-3 hover-scale">
-                        <Image src="/logo.jpg" alt="MPE Digital Solutions" width={180} height={60} className="h-12 w-auto" />
+                        <Image src="/logo1.png" alt="MPE Digital Solutions" width={300} height={300} className="h-50 w-auto" />
                     </Link>
 
                     {/* Desktop Navigation */}

@@ -20,9 +20,9 @@ export default function ServiceCard({
     linkText = 'En savoir plus'
 }: ServiceCardProps) {
     return (
-        <div className="group relative glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
-            {/* Gradient Border Effect */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0066cc] to-[#00a651] opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div>
+        <div className="group relative glass rounded-2xl p-8 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 border border-transparent hover:border-gray-200 hover:bg-white/80">
+            {/* Gradient Border Effect - Removed for cleaner look */}
+            {/* <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-[#0066cc] to-[#00a651] opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10 blur-xl"></div> */}
 
             {/* Icon */}
             <div className="w-16 h-16 mb-6 text-[#0066cc] group-hover:scale-110 transition-transform duration-300">

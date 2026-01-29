@@ -104,6 +104,7 @@ function HomeContent() {
         <Hero
           title={t('hero.title')}
           subtitle={t('hero.subtitle')}
+          backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2850&q=80"
           primaryCta={{ text: t('hero.cta.primary'), href: '/contact' }}
           secondaryCta={{ text: t('hero.cta.secondary'), href: '/services' }}
         />

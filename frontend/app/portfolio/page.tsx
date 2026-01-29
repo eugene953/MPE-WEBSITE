@@ -4,6 +4,7 @@ import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
+import Hero from '../components/Hero';
 
 function PortfolioContent() {
     const { t } = useLanguage();
@@ -15,42 +16,42 @@ function PortfolioContent() {
             title: 'E-Commerce Platform',
             category: 'Web Development',
             description: 'Modern e-commerce solution with payment integration',
-            image: '/placeholder-portfolio-1.jpg',
+            image: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=800&q=80',
         },
         {
             id: 2,
             title: 'Corporate Website',
             category: 'Web Design',
             description: 'Professional corporate website with CMS',
-            image: '/placeholder-portfolio-2.jpg',
+            image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
         },
         {
             id: 3,
             title: 'Mobile App',
             category: 'Mobile Development',
             description: 'Cross-platform mobile application',
-            image: '/placeholder-portfolio-3.jpg',
+            image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80',
         },
         {
             id: 4,
             title: 'Brand Identity',
             category: 'Graphic Design',
             description: 'Complete brand identity design package',
-            image: '/placeholder-portfolio-4.jpg',
+            image: 'https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&w=800&q=80',
         },
         {
             id: 5,
             title: 'SEO Campaign',
             category: 'Digital Marketing',
             description: 'Successful SEO optimization campaign',
-            image: '/placeholder-portfolio-5.jpg',
+            image: 'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?auto=format&fit=crop&w=800&q=80',
         },
         {
             id: 6,
             title: 'Restaurant Website',
             category: 'Web Development',
             description: 'Interactive restaurant website with online ordering',
-            image: '/placeholder-portfolio-6.jpg',
+            image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80',
         },
     ];
 
@@ -62,21 +63,12 @@ function PortfolioContent() {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#e6f2ff] to-[#e6f7ef] overflow-hidden">
-                    <div className="absolute inset-0">
-                        <div className="absolute top-10 right-10 w-64 h-64 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-                        <div className="absolute bottom-10 left-10 w-64 h-64 bg-[#00a651] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-                    </div>
-
-                    <div className="relative max-w-7xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-[var(--font-heading)] gradient-text">
-                            {t('nav.portfolio')}
-                        </h1>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            Découvrez nos projets réalisés et nos réalisations exceptionnelles
-                        </p>
-                    </div>
-                </section>
+                <Hero
+                    title={t('nav.portfolio')}
+                    subtitle="Découvrez nos projets réalisés et nos réalisations exceptionnelles"
+                    backgroundImage="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=2850&q=80"
+                    primaryCta={{ text: t('about.team.button'), href: '/contact' }}
+                />
 
                 {/* Filter Buttons */}
                 <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-gray-200">
@@ -86,8 +78,8 @@ function PortfolioContent() {
                                 <button
                                     key={index}
                                     className={`px-6 py-2 rounded-full font-medium transition-all ${index === 0
-                                            ? 'bg-gradient-to-r from-[#0066cc] to-[#00a651] text-white'
-                                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                        ? 'bg-gradient-to-r from-[#0066cc] to-[#00a651] text-white'
+                                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                                         }`}
                                 >
                                     {category}
@@ -107,15 +99,18 @@ function PortfolioContent() {
                                     className="group relative glass rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in"
                                     style={{ animationDelay: `${index * 0.1}s` }}
                                 >
-                                    {/* Image Placeholder */}
-                                    <div className="relative h-64 bg-gradient-to-br from-[#0066cc] to-[#00a651] flex items-center justify-center">
-                                        <svg className="w-24 h-24 text-white opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                        </svg>
+                                    {/* Image */}
+                                    <div className="relative h-64 bg-gray-200">
+                                        <Image
+                                            src={item.image}
+                                            alt={item.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
                                         {/* Overlay on hover */}
-                                        <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-300 flex items-center justify-center">
-                                            <span className="text-white text-lg font-semibold opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                                View Project →
+                                        <div className="absolute inset-0 transition-all duration-300 flex items-center justify-center z-10">
+                                            <span className="bg-white/90 text-[#0066cc] px-6 py-2 rounded-full text-sm font-bold shadow-lg transform translate-y-4 opacity-0 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                                View Project
                                             </span>
                                         </div>
                                     </div>

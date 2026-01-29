@@ -4,6 +4,7 @@ import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ValueCard from '../components/ValueCard';
+import Hero from '../components/Hero';
 
 function AboutContent() {
     const { t } = useLanguage();
@@ -68,21 +69,12 @@ function AboutContent() {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#e6f2ff] to-[#e6f7ef] overflow-hidden">
-                    <div className="absolute inset-0">
-                        <div className="absolute top-10 right-10 w-64 h-64 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-                        <div className="absolute bottom-10 left-10 w-64 h-64 bg-[#00a651] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-                    </div>
-
-                    <div className="relative max-w-7xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-[var(--font-heading)] gradient-text">
-                            {t('about.title')}
-                        </h1>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            {t('about.subtitle')}
-                        </p>
-                    </div>
-                </section>
+                <Hero
+                    title={t('about.title')}
+                    subtitle={t('about.subtitle')}
+                    backgroundImage="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2850&q=80"
+                    primaryCta={{ text: t('about.team.button'), href: '/contact' }}
+                />
 
                 {/* Values Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">

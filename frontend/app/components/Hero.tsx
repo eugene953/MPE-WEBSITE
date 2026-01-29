@@ -3,6 +3,7 @@ import Link from 'next/link';
 interface HeroProps {
     title: string;
     subtitle: string;
+    backgroundImage?: string;
     primaryCta: {
         text: string;
         href: string;
@@ -13,23 +14,39 @@ interface HeroProps {
     };
 }
 
-export default function Hero({ title, subtitle, primaryCta, secondaryCta }: HeroProps) {
+export default function Hero({ title, subtitle, backgroundImage, primaryCta, secondaryCta }: HeroProps) {
+    const hasImage = !!backgroundImage;
+
     return (
-        <section className="relative min-h-[600px] flex items-center justify-center overflow-hidden bg-gradient-to-br from-[#e6f2ff] via-white to-[#e6f7ef]">
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0 overflow-hidden">
-                <div className="absolute top-20 left-10 w-72 h-72 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-                <div className="absolute bottom-20 right-10 w-72 h-72 bg-[#00a651] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0052a3] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
-            </div>
+        <section className={`relative min-h-[600px] flex items-center justify-center overflow-hidden ${hasImage ? 'bg-black' : 'bg-gradient-to-br from-[#e6f2ff] via-white to-[#e6f7ef]'}`}>
+            {/* Background Image */}
+            {backgroundImage && (
+                <div className="absolute inset-0 z-0">
+                    <img
+                        src={backgroundImage}
+                        alt="Hero background"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/60"></div>
+                </div>
+            )}
+
+            {/* Animated Background Elements - Only show if no image */}
+            {!backgroundImage && (
+                <div className="absolute inset-0 overflow-hidden z-0">
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
+                    <div className="absolute bottom-20 right-10 w-72 h-72 bg-[#00a651] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#0052a3] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style={{ animationDelay: '2s' }}></div>
+                </div>
+            )}
 
             {/* Content */}
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
                 <div className="animate-fade-in">
                     <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 font-[var(--font-heading)]">
-                        <span className="gradient-text">{title}</span>
+                        <span className={hasImage ? 'text-white' : 'gradient-text'}>{title}</span>
                     </h1>
-                    <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 mb-10 max-w-3xl mx-auto leading-relaxed">
+                    <p className={`text-lg sm:text-xl lg:text-2xl mb-10 max-w-3xl mx-auto leading-relaxed ${hasImage ? 'text-gray-100' : 'text-gray-700'}`}>
                         {subtitle}
                     </p>
 

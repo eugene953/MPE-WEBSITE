@@ -4,6 +4,7 @@ import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
+import Hero from '../components/Hero';
 
 function ContactContent() {
     const { t } = useLanguage();
@@ -40,21 +41,12 @@ function ContactContent() {
 
             <main>
                 {/* Hero Section */}
-                <section className="relative py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-[#e6f2ff] to-[#e6f7ef] overflow-hidden">
-                    <div className="absolute inset-0">
-                        <div className="absolute top-10 right-10 w-64 h-64 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>
-                        <div className="absolute bottom-10 left-10 w-64 h-64 bg-[#00a651] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float" style={{ animationDelay: '1s' }}></div>
-                    </div>
-
-                    <div className="relative max-w-7xl mx-auto text-center">
-                        <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-[var(--font-heading)] gradient-text">
-                            {t('contact.title')}
-                        </h1>
-                        <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                            {t('contact.subtitle')}
-                        </p>
-                    </div>
-                </section>
+                <Hero
+                    title={t('contact.title')}
+                    subtitle={t('contact.subtitle')}
+                    backgroundImage="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=2850&q=80"
+                    primaryCta={{ text: t('contact.form.submit'), href: '#contact-form' }}
+                />
 
                 {/* Contact Section */}
                 <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
