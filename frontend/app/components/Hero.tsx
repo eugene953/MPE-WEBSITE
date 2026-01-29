@@ -31,7 +31,7 @@ export default function Hero({ title, subtitle, backgroundImage, primaryCta, sec
                 </div>
             )}
 
-            {/* Animated Background Elements - Only show if no image */}
+            {/* Animated Blobs */}
             {!backgroundImage && (
                 <div className="absolute inset-0 overflow-hidden z-0">
                     <div className="absolute top-20 left-10 w-72 h-72 bg-[#0066cc] rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-float"></div>

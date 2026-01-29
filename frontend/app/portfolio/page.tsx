@@ -8,8 +8,7 @@ import Hero from '../components/Hero';
 
 function PortfolioContent() {
     const { t } = useLanguage();
-
-    // Sample portfolio items (you can replace with actual projects)
+    
     const portfolioItems = [
         {
             id: 1,
@@ -62,7 +61,7 @@ function PortfolioContent() {
             <Header />
 
             <main>
-                {/* Hero Section */}
+
                 <Hero
                     title={t('nav.portfolio')}
                     subtitle="Découvrez nos projets réalisés et nos réalisations exceptionnelles"
@@ -99,7 +98,6 @@ function PortfolioContent() {
                                     className="group relative glass rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 animate-fade-in"
                                     style={{ animationDelay: `${index * 0.1}s` }}
                                 >
-                                    {/* Image */}
                                     <div className="relative h-64 bg-gray-200">
                                         <Image
                                             src={item.image}
