@@ -11,7 +11,6 @@ export default function Footer() {
 
     const handleNewsletterSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        // Handle newsletter subscription
         console.log('Newsletter subscription:', email);
         setEmail('');
     };
@@ -20,7 +19,7 @@ export default function Footer() {
         <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-                    {/* Logo and Newsletter */}
+               
                     <div className="lg:col-span-1">
                         <h3 className="text-lg font-semibold mb-3 font-[var(--font-heading)]">{t('footer.newsletter.title')}</h3>
                         <p className="text-gray-400 text-sm mb-4">{t('footer.newsletter.description')}</p>
