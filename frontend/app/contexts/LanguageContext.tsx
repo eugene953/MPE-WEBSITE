@@ -1,3 +1,4 @@
+'use client';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 type Language = 'fr' | 'en';
@@ -17,6 +18,11 @@ const translations = {
         'nav.about': 'À propos',
         'nav.contact': 'Contact',
         'nav.getQuote': 'Demander un devis',
+        'nav.login': 'Se Connecter',
+        'nav.register': 'S\'inscrire',
+        'nav.dashboard': 'Tableau de Bord',
+        'nav.mySpace': 'Mon Espace',
+        'nav.logout': 'Déconnexion',
 
         // Hero Section
         'hero.title': 'Transformez Votre Présence Numérique',
@@ -102,6 +108,21 @@ const translations = {
         'contact.hours': 'Horaires',
         'contact.hours.time': 'Lundi - Dimanche: 08h - 20h',
 
+        // Quote Request
+        'quote.title': 'Demandez un Devis',
+        'quote.subtitle': 'Parlez-nous de votre projet',
+        'quote.form.personal': 'Vos Informations',
+        'quote.form.project': 'Détails du Projet',
+        'quote.form.firstName': 'Prénom',
+        'quote.form.lastName': 'Nom',
+        'quote.form.email': 'Email',
+        'quote.form.password': 'Mot de passe (pour créer votre compte)',
+        'quote.form.projectTitle': 'Titre du Projet',
+        'quote.form.description': 'Description du Projet',
+        'quote.form.budget': 'Budget Estimé (Optionnel)',
+        'quote.form.submit': 'Envoyer la demande',
+        'quote.success': 'Votre demande a été envoyée avec succès! Redirection...',
+
         // Footer
         'footer.newsletter.title': 'Votre Newsletter',
         'footer.newsletter.description': 'Inscrivez-vous à notre newsletter pour rester informé(e) des dernières tendances, conseils et actualités en matière de solutions numériques.',
@@ -117,15 +138,44 @@ const translations = {
 
         // Locations
         'location.yaounde': 'Yaoundé',
-        'location.yaounde.address': 'Nkoabang – Entrée Carrière',
-        'location.douala': 'Douala',
-        'location.douala.address': 'Cité des palmiers',
-        'location.france': 'France',
-        'location.france.address': '91096, Paris, France',
+        'portfolio.subtitle': 'Découvrez nos projets réalisés et nos réalisations exceptionnelles',
+        'stats.projects': 'Projets Terminés',
+        'stats.clients': 'Clients Heureux',
+        'stats.experience': 'Années d\'Expérience',
+        'stats.support': 'Support',
 
-        // CTA
-        'cta.startProject': 'Start project',
-        'cta.getQuote': 'Obtenez Votre Devis',
+        // Auth
+        'cta.startProject': 'Commencer mon projet',
+        'cta.getQuote': 'Demander un devis gratuit',
+
+        // Auth
+        'auth.register.title': 'REJOINDRE MPE',
+        'auth.register.subtitle': 'Créez votre compte pour commencer votre projet au Cameroun.',
+        'auth.register.firstName': 'Prénom',
+        'auth.register.lastName': 'Nom',
+        'auth.register.email': 'Email Professionnel',
+        'auth.register.password': 'Mot de passe',
+        'auth.register.company': 'Entreprise (Optionnel)',
+        'auth.register.role': 'Je suis un...',
+        'auth.register.role.client': 'Client (Propriétaire de projet)',
+        'auth.register.role.agent': 'Agent MPE (Admin/Expert)',
+        'auth.register.submit': 'CRÉER MON COMPTE',
+        'auth.register.submitting': 'CRÉATION EN COURS...',
+        'auth.register.alreadyHaveAccount': 'Déjà inscrit ?',
+        'auth.register.login': 'CONNECTEZ-VOUS',
+        'auth.login.title': 'Connexion à votre compte',
+        'auth.login.email': 'Adresse email',
+        'auth.login.password': 'Mot de passe',
+        'auth.login.submit': 'Se connecter',
+        'auth.login.error': 'Échec de la connexion. Veuillez vérifier vos identifiants.',
+        'auth.error': 'Erreur',
+
+        // Verify
+        'verify.title': 'Vérification de l\'Email',
+        'verify.subtitle': 'Un code a été envoyé à',
+        'verify.code': 'Code de vérification',
+        'verify.submit': 'Vérifier',
+        'verify.submitting': 'Vérification...',
     },
     en: {
         // Navigation
@@ -135,6 +185,11 @@ const translations = {
         'nav.about': 'About',
         'nav.contact': 'Contact',
         'nav.getQuote': 'Get a Quote',
+        'nav.login': 'Log In',
+        'nav.register': 'Register',
+        'nav.dashboard': 'Dashboard',
+        'nav.mySpace': 'My Space',
+        'nav.logout': 'Log Out',
 
         // Hero Section
         'hero.title': 'Transform Your Digital Presence',
@@ -220,6 +275,21 @@ const translations = {
         'contact.hours': 'Business Hours',
         'contact.hours.time': 'Monday - Sunday: 08h - 20h',
 
+        // Quote Request
+        'quote.title': 'Request a Quote',
+        'quote.subtitle': 'Tell us about your project',
+        'quote.form.personal': 'Your Information',
+        'quote.form.project': 'Project Details',
+        'quote.form.firstName': 'First Name',
+        'quote.form.lastName': 'Last Name',
+        'quote.form.email': 'Email',
+        'quote.form.password': 'Password (to create your account)',
+        'quote.form.projectTitle': 'Project Title',
+        'quote.form.description': 'Project Description',
+        'quote.form.budget': 'Estimated Budget (Optional)',
+        'quote.form.submit': 'Submit Request',
+        'quote.success': 'Your request has been sent successfully! Redirecting...',
+
         // Footer
         'footer.newsletter.title': 'Newsletter',
         'footer.newsletter.description': 'Subscribe to our newsletter to stay informed about the latest trends, tips and news in digital solutions.',
@@ -235,15 +305,44 @@ const translations = {
 
         // Locations
         'location.yaounde': 'Yaoundé',
-        'location.yaounde.address': 'Nkoabang – Carrière Entrance',
-        'location.douala': 'Douala',
-        'location.douala.address': 'Cité des palmiers',
-        'location.france': 'France',
-        'location.france.address': '91096, Paris, France',
+        'portfolio.subtitle': 'Discover our completed projects and exceptional achievements',
+        'stats.projects': 'Projects Completed',
+        'stats.clients': 'Happy Clients',
+        'stats.experience': 'Years Experience',
+        'stats.support': 'Support',
 
-        // CTA
+        // Auth
         'cta.startProject': 'Start project',
         'cta.getQuote': 'Get Your Quote',
+
+        // Auth
+        'auth.register.title': 'JOIN MPE',
+        'auth.register.subtitle': 'Create your account to start your project in Cameroon.',
+        'auth.register.firstName': 'First Name',
+        'auth.register.lastName': 'Last Name',
+        'auth.register.email': 'Professional Email',
+        'auth.register.password': 'Password',
+        'auth.register.company': 'Company (Optional)',
+        'auth.register.role': 'I am a...',
+        'auth.register.role.client': 'Client (Project Owner)',
+        'auth.register.role.agent': 'MPE Agent (Admin/Expert)',
+        'auth.register.submit': 'CREATE MY ACCOUNT',
+        'auth.register.submitting': 'CREATING ACCOUNT...',
+        'auth.register.alreadyHaveAccount': 'Already registered?',
+        'auth.register.login': 'LOG IN',
+        'auth.login.title': 'Sign in to your account',
+        'auth.login.email': 'Email address',
+        'auth.login.password': 'Password',
+        'auth.login.submit': 'Sign in',
+        'auth.login.error': 'Login failed. Please check your credentials.',
+        'auth.error': 'Error',
+
+        // Verify
+        'verify.title': 'Email Verification',
+        'verify.subtitle': 'A code has been sent to',
+        'verify.code': 'Verification Code',
+        'verify.submit': 'Verify',
+        'verify.submitting': 'Verifying...',
     },
 };
 

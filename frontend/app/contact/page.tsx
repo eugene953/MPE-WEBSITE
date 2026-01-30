@@ -1,6 +1,6 @@
 'use client';
 
-import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ContactForm from '../components/ContactForm';
@@ -52,7 +52,7 @@ function ContactContent() {
                 <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
                     <div className="max-w-7xl mx-auto">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                         
+
                             <div className="animate-fade-in">
                                 <h2 className="text-2xl font-bold mb-6 font-[var(--font-heading)] text-gray-900">
                                     {t('contact.form.submit')}
@@ -65,7 +65,7 @@ function ContactContent() {
                                     submitText={t('contact.form.submit')}
                                 />
                             </div>
-                         
+
                             <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
                                 <h2 className="text-2xl font-bold mb-6 font-[var(--font-heading)] text-gray-900">
                                     {t('footer.contact.title')}
@@ -137,8 +137,6 @@ function ContactContent() {
 
 export default function Contact() {
     return (
-        <LanguageProvider>
-            <ContactContent />
-        </LanguageProvider>
+        <ContactContent />
     );
 }

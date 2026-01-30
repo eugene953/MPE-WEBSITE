@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 interface PromoBannerProps {
     message: string;
@@ -17,12 +18,12 @@ export default function PromoBanner({ message, ctaText, ctaLink }: PromoBannerPr
         <div className="relative bg-gradient-to-r from-[#0066cc] via-[#0052a3] to-[#00a651] text-white py-3 px-4 text-center">
             <div className="max-w-7xl mx-auto flex items-center justify-center gap-4 flex-wrap">
                 <p className="text-sm md:text-base font-medium">{message}</p>
-                <a
+                <Link
                     href={ctaLink}
                     className="inline-block bg-white text-[#0066cc] px-4 py-2 rounded-full text-sm font-semibold hover:bg-opacity-90 transition-all hover-scale"
                 >
                     {ctaText}
-                </a>
+                </Link>
             </div>
             <button
                 onClick={() => setIsVisible(false)}

@@ -1,10 +1,11 @@
 'use client';
 
-import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ValueCard from '../components/ValueCard';
 import Hero from '../components/Hero';
+import Link from 'next/link';
 
 function AboutContent() {
     const { t } = useLanguage();
@@ -73,7 +74,7 @@ function AboutContent() {
                     title={t('about.title')}
                     subtitle={t('about.subtitle')}
                     backgroundImage="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=2850&q=80"
-                    primaryCta={{ text: t('about.team.button'), href: '/contact' }}
+                    primaryCta={{ text: t('hero.cta.primary'), href: '/register' }}
                 />
 
                 {/* Values Section */}
@@ -127,12 +128,12 @@ function AboutContent() {
                         <p className="text-xl mb-8 opacity-90">
                             {t('contact.subtitle')}
                         </p>
-                        <a
-                            href="/contact"
+                        <Link
+                            href="/register"
                             className="inline-block bg-white text-[#0066cc] px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all hover-scale"
                         >
-                            {t('about.team.button')} →
-                        </a>
+                            {t('hero.cta.primary')} →
+                        </Link>
                     </div>
                 </section>
             </main>
@@ -144,8 +145,6 @@ function AboutContent() {
 
 export default function About() {
     return (
-        <LanguageProvider>
-            <AboutContent />
-        </LanguageProvider>
+        <AboutContent />
     );
 }

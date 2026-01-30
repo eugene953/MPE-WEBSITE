@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "MPE Digital Solutions | Transformez Votre Présence Numérique",
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased">
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

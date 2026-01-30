@@ -1,14 +1,22 @@
 'use client';
+import { useState, useEffect } from 'react';
 
-import { LanguageProvider, useLanguage } from './contexts/LanguageContext';
+import { useLanguage } from './contexts/LanguageContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Link from 'next/link';
 import PromoBanner from './components/PromoBanner';
 import Hero from './components/Hero';
 import ServiceCard from './components/ServiceCard';
 
 function HomeContent() {
   const { t } = useLanguage();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsAuthenticated(!!token);
+  }, []);
 
   const services = [
     {
@@ -95,7 +103,7 @@ function HomeContent() {
       <PromoBanner
         message={t('promo.text')}
         ctaText={t('promo.cta')}
-        ctaLink="/contact"
+        ctaLink="/register"
       />
       <Header />
 
@@ -105,7 +113,7 @@ function HomeContent() {
           title={t('hero.title')}
           subtitle={t('hero.subtitle')}
           backgroundImage="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=2850&q=80"
-          primaryCta={{ text: t('hero.cta.primary'), href: '/contact' }}
+          primaryCta={{ text: t('hero.cta.primary'), href: '/register' }}
           secondaryCta={{ text: t('hero.cta.secondary'), href: '/services' }}
         />
 
@@ -134,10 +142,10 @@ function HomeContent() {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               {[
-                { number: '100+', label: 'Projects Completed' },
-                { number: '50+', label: 'Happy Clients' },
-                { number: '5+', label: 'Years Experience' },
-                { number: '24/7', label: 'Support' },
+                { number: '100+', label: t('stats.projects') },
+                { number: '50+', label: t('stats.clients') },
+                { number: '5+', label: t('stats.experience') },
+                { number: '24/7', label: t('stats.support') },
               ].map((stat, index) => (
                 <div key={index} className="text-center animate-fade-in" style={{ animationDelay: `${index * 0.1}s` }}>
                   <div className="text-4xl md:text-5xl font-bold mb-2 font-[var(--font-heading)]">{stat.number}</div>
@@ -157,12 +165,12 @@ function HomeContent() {
             <p className="text-xl text-gray-600 mb-8">
               {t('hero.subtitle')}
             </p>
-            <a
-              href="/contact"
+            <Link
+              href="/register"
               className="inline-block bg-gradient-to-r from-[#0066cc] to-[#00a651] text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all hover-scale"
             >
               {t('cta.startProject')} →
-            </a>
+            </Link>
           </div>
         </section>
       </main>
@@ -174,8 +182,6 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <LanguageProvider>
-      <HomeContent />
-    </LanguageProvider>
+    <HomeContent />
   );
 }

@@ -1,10 +1,11 @@
 'use client';
 
-import { LanguageProvider, useLanguage } from '../contexts/LanguageContext';
+import { useLanguage } from '../contexts/LanguageContext';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ServiceCard from '../components/ServiceCard';
 import Hero from '../components/Hero';
+import Link from 'next/link';
 
 function ServicesContent() {
     const { t } = useLanguage();
@@ -91,7 +92,7 @@ function ServicesContent() {
                     title={t('services.title')}
                     subtitle={t('services.subtitle')}
                     backgroundImage="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=2850&q=80"
-                    primaryCta={{ text: t('about.team.button'), href: '/contact' }}
+                    primaryCta={{ text: t('hero.cta.primary'), href: '/register' }}
                 />
 
                 {/* Services Grid */}
@@ -116,12 +117,12 @@ function ServicesContent() {
                         <p className="text-xl mb-8 opacity-90">
                             {t('contact.subtitle')}
                         </p>
-                        <a
-                            href="/contact"
+                        <Link
+                            href="/register"
                             className="inline-block bg-white text-[#0066cc] px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl transition-all hover-scale"
                         >
-                            {t('about.team.button')} →
-                        </a>
+                            {t('hero.cta.primary')} →
+                        </Link>
                     </div>
                 </section>
             </main>
@@ -133,8 +134,6 @@ function ServicesContent() {
 
 export default function Services() {
     return (
-        <LanguageProvider>
-            <ServicesContent />
-        </LanguageProvider>
+        <ServicesContent />
     );
 }
