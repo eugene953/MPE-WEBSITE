@@ -1,9 +1,7 @@
 pipeline {
-
     agent any
 
     stages {
-
         stage('Verify Node.js') {
             steps {
                 bat 'node --version'
@@ -40,6 +38,5 @@ pipeline {
                 bat 'docker build -t mpe-frontend:latest ./frontend'
             }
         }
-
     }
 }
