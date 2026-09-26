@@ -1,13 +1,45 @@
 pipeline {
-    // The Jenkins controller/agent in this environment runs on Windows.
-    // Docker's Windows workflow plugin passes a Windows workspace path to
-    // the Linux container, which Alpine cannot use as its working directory.
+
     agent any
+
     stages {
-        stage('verify Node.js') {
+
+        stage('Verify Node.js') {
             steps {
                 bat 'node --version'
+                bat 'npm --version'
             }
         }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('frontend') {
+                    bat 'npm ci'
+                }
+            }
+        }
+
+        stage('Build Frontend') {
+            steps {
+                dir('frontend') {
+                    bat 'npm run build'
+                }
+            }
+        }
+
+        stage('Test Frontend') {
+            steps {
+                dir('frontend') {
+                    bat 'npm test'
+                }
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                bat 'docker build -t mpe-frontend:latest ./frontend'
+            }
+        }
+
     }
 }
