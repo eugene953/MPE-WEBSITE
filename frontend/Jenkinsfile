@@ -1,7 +1,9 @@
 pipeline {
+
     agent any
 
     stages {
+
         stage('Verify Node.js') {
             steps {
                 bat 'node --version'
@@ -37,6 +39,25 @@ pipeline {
             steps {
                 bat 'docker build -t mpe-frontend:latest ./frontend'
             }
+        }
+
+    }
+
+     post {
+        success {
+            mail to: 'nfouaeugene545@gmail.com',
+                 subject: "Successful Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Pipeline completed successfully. ${env.BUILD_URL}"
+        }
+        unstable {
+            mail to: 'nfouaeugene545@gmail.com',
+                 subject: "Unstable Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Pipeline completed with an unstable status. ${env.BUILD_URL}"
+        }
+        failure {
+            mail to: 'nfouaeugene545@gmail.com',
+                 subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+                 body: "Something is wrong with ${env.BUILD_URL}"
         }
     }
 }
