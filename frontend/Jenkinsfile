@@ -1,7 +1,7 @@
 def sendStatusEmail(String status) {
     try {
         withCredentials([usernamePassword(
-            credentialsId: 'ethereal-smtp',
+            credentialsId: 'f6a785c2-cd79-4189-8d98-891041f71b04',
             usernameVariable: 'ETHEREAL_SMTP_USER',
             passwordVariable: 'ETHEREAL_SMTP_PASSWORD'
         )]) {
@@ -20,7 +20,7 @@ def sendStatusEmail(String status) {
             }
         }
     } catch (Exception ignored) {
-        echo "Could not send ${status} notification. Check the Jenkins credential 'ethereal-smtp'."
+        echo "Could not send ${status} notification. Check that the configured Ethereal credential is available to this job."
     }
 }
 
@@ -63,7 +63,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t mpe-frontend:latest ./frontend'
+                script {
+                    int dockerStatus = bat(
+                        returnStatus: true,
+                        script: 'docker info >NUL 2>&1'
+                    )
+
+                    if (dockerStatus != 0) {
+                        unstable('Docker image was not built because the Docker engine is unavailable on this Jenkins agent.')
+                        return
+                    }
+
+                    bat 'docker build -t mpe-frontend:latest ./frontend'
+                }
             }
         }
 
