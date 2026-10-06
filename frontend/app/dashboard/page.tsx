@@ -282,7 +282,7 @@ export default function Dashboard() {
                                                     </button>
                                                 </div>
                                             </div>
-                                            {quote.proposals?.length > 0 && (
+                                            {quote.proposals && quote.proposals.length > 0 && (
                                                 <div className="mt-4 p-4 bg-gray-100 rounded-lg">
                                                     <p className="text-xs font-bold text-gray-400 uppercase mb-2">Dernière proposition</p>
                                                     <p className="text-sm">Prix : <span className="font-bold">{quote.proposals[quote.proposals.length - 1].price} FCFA</span></p>
