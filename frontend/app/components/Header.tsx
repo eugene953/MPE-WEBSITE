@@ -2,18 +2,25 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useSyncExternalStore } from 'react';
 import { useLanguage } from '../contexts/LanguageContext';
+
+const subscribeToAuthChanges = (callback: () => void) => {
+    window.addEventListener('storage', callback);
+    window.addEventListener('auth-change', callback);
+    return () => {
+        window.removeEventListener('storage', callback);
+        window.removeEventListener('auth-change', callback);
+    };
+};
+
+const getIsAuthenticated = () => Boolean(localStorage.getItem('token'));
+const getServerAuthSnapshot = () => false;
 
 export default function Header() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const isAuthenticated = useSyncExternalStore(subscribeToAuthChanges, getIsAuthenticated, getServerAuthSnapshot);
     const { language, setLanguage, t } = useLanguage();
-
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        setIsAuthenticated(!!token);
-    }, []);
 
     const navLinks = [
         { href: '/', label: t('nav.home') },
@@ -30,7 +37,7 @@ export default function Header() {
     const handleLogout = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('user');
-        setIsAuthenticated(false);
+        window.dispatchEvent(new Event('auth-change'));
         window.location.href = '/';
     };
 

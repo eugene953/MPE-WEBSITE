@@ -1,5 +1,4 @@
 'use client';
-import { useState, useEffect } from 'react';
 
 import { useLanguage } from './contexts/LanguageContext';
 import Header from './components/Header';
@@ -11,13 +10,6 @@ import ServiceCard from './components/ServiceCard';
 
 function HomeContent() {
   const { t } = useLanguage();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setIsAuthenticated(!!token);
-  }, []);
-
   const services = [
     {
       title: t('services.web.title'),

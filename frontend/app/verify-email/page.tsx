@@ -40,10 +40,11 @@ function VerifyEmailContent() {
             const data = await res.json();
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('user', JSON.stringify(data.user));
+            window.dispatchEvent(new Event('auth-change'));
 
             router.push('/dashboard');
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Verification failed');
         } finally {
             setSubmitting(false);
         }

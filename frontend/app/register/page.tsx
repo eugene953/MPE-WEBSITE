@@ -51,8 +51,8 @@ export default function Register() {
             }
 
             router.push(`/verify-email?email=${encodeURIComponent(formData.email)}`);
-        } catch (err: any) {
-            setError(err.message);
+        } catch (err: unknown) {
+            setError(err instanceof Error ? err.message : 'Registration failed');
         } finally {
             setSubmitting(false);
         }

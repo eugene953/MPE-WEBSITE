@@ -35,8 +35,9 @@ export default function Login() {
             const data = await res.json();
             localStorage.setItem('token', data.access_token);
             localStorage.setItem('user', JSON.stringify(data.user));
+            window.dispatchEvent(new Event('auth-change'));
             router.push('/dashboard');
-        } catch (err) {
+        } catch {
             setError(t('auth.login.error'));
         }
     };

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface HeroProps {
     title: string;
@@ -22,10 +23,12 @@ export default function Hero({ title, subtitle, backgroundImage, primaryCta, sec
             {/* Background Image */}
             {backgroundImage && (
                 <div className="absolute inset-0 z-0">
-                    <img
+                    <Image
                         src={backgroundImage}
                         alt="Hero background"
-                        className="w-full h-full object-cover"
+                        fill
+                        sizes="100vw"
+                        className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/60"></div>
                 </div>

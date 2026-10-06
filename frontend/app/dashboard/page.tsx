@@ -6,21 +6,33 @@ import { useRouter } from 'next/navigation';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
+type Quote = {
+    _id: string;
+    projectTitle: string;
+    createdAt: string;
+    status: string;
+    price?: number;
+    proposals?: { price: number; message: string }[];
+};
+type Project = { _id: string; title: string; status: string };
+type Contract = { _id: string; project?: { title: string }; updatedAt: string; status: string };
+type Message = { _id: string; sender: { role: string; firstName: string }; content: string; createdAt: string };
+
 export default function Dashboard() {
     const { t } = useLanguage();
     const router = useRouter();
     const [activeTab, setActiveTab] = useState('quotes');
     const [activeProjectStatus, setActiveProjectStatus] = useState('all');
-    const [quotes, setQuotes] = useState<any[]>([]);
-    const [projects, setProjects] = useState<any[]>([]);
-    const [contracts, setContracts] = useState<any[]>([]);
+    const [quotes, setQuotes] = useState<Quote[]>([]);
+    const [projects, setProjects] = useState<Project[]>([]);
+    const [contracts, setContracts] = useState<Contract[]>([]);
     const [loading, setLoading] = useState(true);
 
     const [showCounterInput, setShowCounterInput] = useState(false);
     const [counterPrice, setCounterPrice] = useState('');
     const [showChat, setShowChat] = useState(false);
     const [selectedQuoteId, setSelectedQuoteId] = useState<string | null>(null);
-    const [messages, setMessages] = useState<any[]>([]);
+    const [messages, setMessages] = useState<Message[]>([]);
     const [newMessage, setNewMessage] = useState('');
 
     const handleSendCounter = async () => {
@@ -224,7 +236,7 @@ export default function Dashboard() {
                                     <div className="text-6xl mb-4">🚀</div>
                                     <h3 className="text-2xl font-bold text-gray-800 mb-2">Prêt à lancer votre projet ?</h3>
                                     <p className="text-gray-500 mb-8 max-w-md mx-auto">
-                                        Vous n'avez pas encore de devis. Commencez par nous parler de votre projet pour obtenir une estimation personnalisée.
+                                        Vous n&apos;avez pas encore de devis. Commencez par nous parler de votre projet pour obtenir une estimation personnalisée.
                                     </p>
                                     <button
                                         onClick={() => router.push('/request-quote')}
@@ -235,7 +247,7 @@ export default function Dashboard() {
                                 </div>
                             ) : (
                                 <div className="grid gap-6">
-                                    {quotes.map((quote: any) => (
+                                    {quotes.map((quote) => (
                                         <div key={quote._id} className="border-2 border-gray-100 p-6 rounded-2xl hover:border-blue-100 hover:shadow-md transition bg-gradient-to-r from-white to-gray-50">
                                             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                                                 <div>
@@ -274,7 +286,7 @@ export default function Dashboard() {
                                                 <div className="mt-4 p-4 bg-gray-100 rounded-lg">
                                                     <p className="text-xs font-bold text-gray-400 uppercase mb-2">Dernière proposition</p>
                                                     <p className="text-sm">Prix : <span className="font-bold">{quote.proposals[quote.proposals.length - 1].price} FCFA</span></p>
-                                                    <p className="text-sm italic">"{quote.proposals[quote.proposals.length - 1].message}"</p>
+                                                    <p className="text-sm italic">&quot;{quote.proposals[quote.proposals.length - 1].message}&quot;</p>
                                                 </div>
                                             )}
                                         </div>
@@ -312,7 +324,7 @@ export default function Dashboard() {
                                         <p className="text-gray-400 text-lg">Aucun projet dans cette catégorie.</p>
                                     </div>
                                 ) : (
-                                    filteredProjects.map((project: any) => (
+                                    filteredProjects.map((project) => (
                                         <div key={project._id} className="border-2 border-gray-100 p-6 rounded-2xl hover:border-blue-100 transition shadow-sm bg-white">
                                             <div className="flex justify-between items-center">
                                                 <h3 className="font-bold text-xl uppercase">{project.title}</h3>
@@ -330,7 +342,7 @@ export default function Dashboard() {
                             <h2 className="text-2xl font-bold mb-6 gradient-text">Mes Contrats et Documents</h2>
                             {contracts.length === 0 ? <p className="text-gray-500">Aucun document trouvé.</p> : (
                                 <div className="grid gap-6">
-                                    {contracts.map((contract: any) => (
+                                    {contracts.map((contract) => (
                                         <div key={contract._id} className="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-50 p-6 rounded-2xl border-2 border-gray-100 border-l-[12px] border-l-blue-600">
                                             <div>
                                                 <h4 className="font-bold text-lg uppercase">CONTRAT - {contract.project?.title || 'PROJET MPE'}</h4>
@@ -368,13 +380,13 @@ export default function Dashboard() {
                         <div className="bg-gradient-to-r from-[#0066cc] to-[#00a651] p-6 text-white flex justify-between items-center">
                             <div>
                                 <h2 className="font-black text-xl uppercase tracking-tighter">Négociation & Messagerie</h2>
-                                <p className="text-sm opacity-80">En direct avec l'équipe MPE</p>
+                                <p className="text-sm opacity-80">En direct avec l&apos;équipe MPE</p>
                             </div>
                             <button onClick={() => setShowChat(false)} className="text-3xl hover:rotate-90 transition-transform">&times;</button>
                         </div>
 
                         <div className="flex-grow overflow-y-auto p-6 space-y-4 bg-gray-50">
-                            {messages.map((msg: any) => (
+                            {messages.map((msg) => (
                                 <div key={msg._id} className={`flex ${msg.sender.role === 'client' ? 'justify-end' : 'justify-start'}`}>
                                     <div className={`max-w-[80%] p-4 rounded-2xl shadow-sm ${msg.sender.role === 'client'
                                         ? 'bg-[#0066cc] text-white rounded-tr-none'
@@ -412,7 +424,7 @@ export default function Dashboard() {
                                             Annuler
                                         </button>
                                     </div>
-                                    <p className="text-xs text-blue-600 font-medium">⚠️ Cela mettra à jour le statut du devis en "Négociation".</p>
+                                    <p className="text-xs text-blue-600 font-medium">⚠️ Cela mettra à jour le statut du devis en &quot;Négociation&quot;.</p>
                                 </div>
                             ) : (
                                 <>
